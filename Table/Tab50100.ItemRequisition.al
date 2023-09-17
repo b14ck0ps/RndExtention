@@ -73,5 +73,6 @@ table 50100 "Item Requisition"
             PurchasesSetup.TestField("Requisition Nos");
             NoSeriesMgt.InitSeries(PurchasesSetup."Requisition Nos", xRec."No. Series", 0D, "No.", "No. Series");
         end;
+        Date := WORKDATE;
     end;
 }

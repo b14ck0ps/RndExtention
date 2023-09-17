@@ -27,20 +27,20 @@ page 50100 "Item Requisition Card"
                     ToolTip = 'Specifies the value of the Date field.';
                     ShowMandatory = true;
                 }
+                field("Requested By"; Rec."Requested By")
+                {
+                    ToolTip = 'Specifies the value of the Requested By field.';
+                    ShowMandatory = true;
+                }
                 field("Global Dimension 1 Code"; Rec."Global Dimension 1 Code")
                 {
                     ToolTip = 'Specifies the value of the Global Dimension 1 Code field.';
                     ShowMandatory = true;
                 }
-                // field("Global Dimension 2 Code"; Rec."Global Dimension 2 Code")
-                // {
-                //     ToolTip = 'Specifies the value of the Global Dimension 2 Code field.';
-
-                // }
-                field("Requested By"; Rec."Requested By")
+                field("Global Dimension 2 Code"; Rec."Global Dimension 2 Code")
                 {
-                    ToolTip = 'Specifies the value of the Requested By field.';
-                    ShowMandatory = true;
+                    ToolTip = 'Specifies the value of the Global Dimension 2 Code field.';
+
                 }
                 field(Status; Rec.Status)
                 {

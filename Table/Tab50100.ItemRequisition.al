@@ -26,6 +26,15 @@ table 50100 "Item Requisition"
         {
             TableRelation = Employee where(Status = filter(Active));
             Caption = 'Requested By';
+            trigger OnValidate()
+            var
+                Employee: Record Employee;
+            begin
+                if Employee.Get("Requested By") then begin
+                    "Global Dimension 1 Code" := Employee."Global Dimension 1 Code";
+                    "Global Dimension 2 Code" := Employee."Global Dimension 2 Code";
+                end;
+            end;
         }
         field(4; "Global Dimension 1 Code"; Code[20])
         {

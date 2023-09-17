@@ -1,4 +1,4 @@
-pageextension 50100 "Requisition Nos" extends "Purchases & Payables Setup"
+pageextension 50100 "Ext Purchases & Payables Setup" extends "Purchases & Payables Setup"
 {
     layout
     {

@@ -1,4 +1,4 @@
-tableextension 50100 "Requisition No" extends "Purchases & Payables Setup"
+tableextension 50100 "Ext Purchases & Payables Setup" extends "Purchases & Payables Setup"
 {
     fields
     {

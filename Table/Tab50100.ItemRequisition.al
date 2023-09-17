@@ -8,6 +8,15 @@ table 50100 "Item Requisition"
         field(1; "No."; Code[20])
         {
             Caption = 'No.';
+            Editable = false;
+            trigger OnValidate()
+            begin
+                if "No." <> xRec."No." then begin
+                    PurchasesSetup.Get();
+                    NoSeriesMgt.TestManual(PurchasesSetup."Requisition Nos");
+                    "No. Series" := '';
+                end;
+            end;
         }
         field(2; "Date"; Date)
         {
@@ -39,6 +48,10 @@ table 50100 "Item Requisition"
         {
             DataClassification = ToBeClassified;
         }
+        field(8; "No. Series"; Code[10])
+        {
+            DataClassification = ToBeClassified;
+        }
     }
     keys
     {
@@ -47,4 +60,18 @@ table 50100 "Item Requisition"
             Clustered = true;
         }
     }
+
+    var
+        PurchasesSetup: Record "Purchases & Payables Setup";
+        NoSeriesMgt: Codeunit NoSeriesManagement;
+
+    trigger OnInsert()
+    var
+    begin
+        if "No." = '' then begin
+            PurchasesSetup.Get();
+            PurchasesSetup.TestField("Requisition Nos");
+            NoSeriesMgt.InitSeries(PurchasesSetup."Requisition Nos", xRec."No. Series", 0D, "No.", "No. Series");
+        end;
+    end;
 }

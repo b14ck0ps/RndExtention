@@ -52,6 +52,18 @@ table 50100 "Item Requisition"
         {
             DataClassification = ToBeClassified;
             OptionMembers = "Open","Released","Pending Approval";
+
+            trigger OnValidate()
+            var
+                ItemRequisitionLine: Record "Item Requisition Line";
+            begin
+                ItemRequisitionLine.SetRange("Document No.", "No.");
+                repeat begin
+                    ItemRequisitionLine.FindFirst();
+                    ItemRequisitionLine.Status := Status;
+                    ItemRequisitionLine.Modify();
+                end until ItemRequisitionLine.Next() = 0;
+            end;
         }
         field(7; Description; Text[200])
         {

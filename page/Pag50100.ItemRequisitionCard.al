@@ -84,11 +84,11 @@ page 50100 "Item Requisition Card"
 
                     trigger OnAction()
                     var
-                        RecRef: Record "Item Requisition";
+                        ItemRequisition: Record "Item Requisition";
                     begin
-                        RecRef.Get(Rec."No.");
-                        RecRef.Status := RecRef.Status::Released;
-                        RecRef.Modify(true);
+                        ItemRequisition.Get(Rec."No.");
+                        ItemRequisition.Validate(Status, Rec.Status::Released);
+                        ItemRequisition.Modify(true);
                     end;
 
 
@@ -102,11 +102,11 @@ page 50100 "Item Requisition Card"
 
                     trigger OnAction()
                     var
-                        RecRef: Record "Item Requisition";
+                        ItemRequisition: Record "Item Requisition";
                     begin
-                        RecRef.Get(Rec."No.");
-                        RecRef.Status := RecRef.Status::Open;
-                        RecRef.Modify(true);
+                        ItemRequisition.Get(Rec."No.");
+                        ItemRequisition.Validate(Status, Rec.Status::Open);
+                        ItemRequisition.Modify(true);
                         IsSalesLinesEditable := true;
                     end;
                 }

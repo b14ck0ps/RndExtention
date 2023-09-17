@@ -16,30 +16,37 @@ page 50100 "Item Requisition Card"
                 field("No."; Rec."No.")
                 {
                     ToolTip = 'Specifies the value of the No. field.';
+                    Editable = IsSalesLinesEditable;
                 }
                 field(Description; Rec.Description)
                 {
                     ToolTip = 'Specifies the value of the Description field.';
                     MultiLine = true;
+                    Editable = IsSalesLinesEditable;
                 }
                 field("Date"; Rec."Date")
                 {
                     ToolTip = 'Specifies the value of the Date field.';
                     ShowMandatory = true;
+                    Editable = IsSalesLinesEditable;
                 }
+
                 field("Requested By"; Rec."Requested By")
                 {
                     ToolTip = 'Specifies the value of the Requested By field.';
                     ShowMandatory = true;
+                    Editable = IsSalesLinesEditable;
                 }
                 field("Global Dimension 1 Code"; Rec."Global Dimension 1 Code")
                 {
                     ToolTip = 'Specifies the value of the Global Dimension 1 Code field.';
                     ShowMandatory = true;
+                    Editable = IsSalesLinesEditable;
                 }
                 field("Global Dimension 2 Code"; Rec."Global Dimension 2 Code")
                 {
                     ToolTip = 'Specifies the value of the Global Dimension 2 Code field.';
+                    Editable = IsSalesLinesEditable;
 
                 }
                 field(Status; Rec.Status)
@@ -59,6 +66,55 @@ page 50100 "Item Requisition Card"
         }
     }
 
+    actions
+    {
+        area(Processing)
+        {
+            group(Action1)
+            {
+                Caption = 'Release';
+                Image = ReleaseDoc;
+                action(Release)
+                {
+                    ApplicationArea = Suite;
+                    Caption = 'Re&lease';
+                    Image = ReleaseDoc;
+                    ShortCutKey = 'Ctrl+F9';
+                    ToolTip = 'Release the document to the next stage of processing. You must reopen the document before you can make changes to it.';
+
+                    trigger OnAction()
+                    var
+                        RecRef: Record "Item Requisition";
+                    begin
+                        RecRef.Get(Rec."No.");
+                        RecRef.Status := RecRef.Status::Released;
+                        RecRef.Modify(true);
+                    end;
+
+
+                }
+                action(Reopen)
+                {
+                    ApplicationArea = Suite;
+                    Caption = 'Re&open';
+                    Image = ReOpen;
+                    ToolTip = 'Reopen the document to change it after it has been approved. Approved documents have the Released status and must be opened before they can be changed';
+
+                    trigger OnAction()
+                    var
+                        RecRef: Record "Item Requisition";
+                    begin
+                        RecRef.Get(Rec."No.");
+                        RecRef.Status := RecRef.Status::Open;
+                        RecRef.Modify(true);
+                        IsSalesLinesEditable := true;
+                    end;
+                }
+            }
+        }
+
+    }
+
     var
         IsSalesLinesEditable: Boolean;
 
@@ -66,5 +122,12 @@ page 50100 "Item Requisition Card"
     begin
         IsSalesLinesEditable := true;
     end;
+
+    trigger OnAfterGetCurrRecord()
+    begin
+        if (Rec.Status <> Rec.Status::Open) then
+            IsSalesLinesEditable := false;
+    end;
+
 }
 

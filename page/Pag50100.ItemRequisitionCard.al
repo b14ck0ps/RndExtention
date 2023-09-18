@@ -110,9 +110,32 @@ page 50100 "Item Requisition Card"
                         IsSalesLinesEditable := true;
                     end;
                 }
+
+            }
+            group(Functions)
+            {
+                Caption = 'F&unctions';
+                Image = "Action";
+                action(Print)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = '&Print';
+                    Ellipsis = true;
+                    Image = Print;
+                    ToolTip = 'Prepare to print the document. A report request window for the document opens where you can specify what to include on the print-out.';
+
+                    trigger OnAction()
+                    var
+                        ItemRequisition: Record "Item Requisition";
+                    begin
+                        ItemRequisition.Reset();
+                        ItemRequisition.SetRange("No.", Rec."No.");
+                        if ItemRequisition.FindFirst() then
+                            Report.Run(Report::"Requisition Report", true, false, ItemRequisition);
+                    end;
+                }
             }
         }
-
     }
 
     var

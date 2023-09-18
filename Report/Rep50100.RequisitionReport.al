@@ -29,7 +29,7 @@ report 50100 "Requisition Report"
             column(Description; Description)
             {
             }
-            column(Date; "Date")
+            column(Date; ReqDate)
             {
             }
             column(RequestedBy; "Requested By")
@@ -75,7 +75,12 @@ report 50100 "Requisition Report"
                 // }
 
             }
+            trigger OnAfterGetRecord()
+            begin
+                ReqDate := Format(ItemRequisition.Date, 0, '<Standard Format,4>');
+            end;
         }
+
     }
     requestpage
     {
@@ -95,4 +100,7 @@ report 50100 "Requisition Report"
             }
         }
     }
+
+    var
+        ReqDate: Text[20];
 }

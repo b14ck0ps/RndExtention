@@ -122,6 +122,10 @@ page 50100 "Item Requisition Card"
                     Caption = '&Print';
                     Ellipsis = true;
                     Image = Print;
+                    Promoted = true;
+                    PromotedOnly = true;
+                    PromotedIsBig = true;
+                    PromotedCategory = Report;
                     ToolTip = 'Prepare to print the document. A report request window for the document opens where you can specify what to include on the print-out.';
 
                     trigger OnAction()

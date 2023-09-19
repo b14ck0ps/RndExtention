@@ -77,6 +77,11 @@ table 50101 "Item Requisition Line"
             Caption = 'Global Dimension 2 Code';
             TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(2));
         }
+        field(13; "Delivery Status"; Option)
+        {
+            Caption = 'Delivery Status';
+            OptionMembers = " ","Processing","Delivered";
+        }
     }
     keys
     {

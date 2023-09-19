@@ -24,10 +24,10 @@ tableextension 50101 "Purchase Line Ext" extends "Purchase Line"
                     Rec.Validate(Quantity, ItemRequisitionLine."Request Quantity");
                     Rec."Requisition No." := ItemRequisitionLine."Document No.";
                     ItemRequisitionLine."Purchase Order No." := Rec."Document No.";
+                    ItemRequisitionLine."Delivery Status" := ItemRequisitionLine."Delivery Status"::Processing;
                     ItemRequisitionLine.Modify(true);
                 end;
             end;
-            // TODO : Change Delivery Status to "Processing"
         }
     }
     var

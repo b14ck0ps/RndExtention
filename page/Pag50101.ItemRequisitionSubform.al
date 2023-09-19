@@ -33,11 +33,6 @@ page 50101 "Item Requisition Subform"
                 {
                     ToolTip = 'Specifies the value of the Available Quantity (Inventory) field.';
                 }
-                field(Status; Rec.Status)
-                {
-                    ToolTip = 'Specifies the value of the Status field.';
-                    Editable = false;
-                }
                 field("Delivery Status"; Rec."Delivery Status")
                 {
                     ToolTip = 'Specifies the value of the Delivery Status field.';

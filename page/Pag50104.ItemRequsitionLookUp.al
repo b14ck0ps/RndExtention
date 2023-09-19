@@ -13,6 +13,10 @@ page 50104 "Item Requisition Look Up"
         {
             repeater(General)
             {
+                field("Document No."; Rec."Document No.")
+                {
+                    ToolTip = 'Specifies the value of the Document No. field.';
+                }
                 field("Item Type"; Rec."Item Type")
                 {
                     ToolTip = 'Specifies the value of the Item Type field.';

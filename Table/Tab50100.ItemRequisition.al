@@ -21,6 +21,18 @@ table 50100 "Item Requisition"
         field(2; "Date"; Date)
         {
             Caption = 'Date';
+
+            trigger OnValidate()
+            var
+                ItemRequisitionLine: Record "Item Requisition Line";
+            begin
+                ItemRequisitionLine.SetRange("Document No.", "No.");
+                ItemRequisitionLine.FindFirst();
+                repeat begin
+                    ItemRequisitionLine.Date := Date;
+                    ItemRequisitionLine.Modify();
+                end until ItemRequisitionLine.Next() = 0;
+            end;
         }
         field(3; "Requested By"; Code[20])
         {

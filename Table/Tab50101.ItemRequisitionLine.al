@@ -29,11 +29,16 @@ table 50101 "Item Requisition Line"
             trigger OnValidate()
             var
                 Item: Record Item;
+                ItemRequtition: Record "Item Requisition";
             begin
                 if Item.Get("Item No.") then
                     Rec."Item Description" := Item.Description
                 else
                     Rec."Item Description" := '';
+
+
+                ItemRequtition.Get(Rec."Document No.");
+                Rec.Date := ItemRequtition.Date;
             end;
         }
         field(5; "Item Description"; Text[50])
@@ -82,6 +87,11 @@ table 50101 "Item Requisition Line"
             Caption = 'Delivery Status';
             OptionMembers = " ","Processing","Delivered";
         }
+        field(14; Date; Date)
+        {
+            DataClassification = ToBeClassified;
+        }
+
     }
     keys
     {

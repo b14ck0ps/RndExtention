@@ -13,11 +13,6 @@ page 50101 "Item Requisition Subform"
         {
             repeater(General)
             {
-                field("Line No."; Rec."Line No.")
-                {
-                    ToolTip = 'Specifies the value of the Line No. field.';
-                    Editable = false;
-                }
                 field("Item Type"; Rec."Item Type")
                 {
                     ToolTip = 'Specifies the value of the Item Type field.';
@@ -46,6 +41,11 @@ page 50101 "Item Requisition Subform"
                 field("Delivery Status"; Rec."Delivery Status")
                 {
                     ToolTip = 'Specifies the value of the Delivery Status field.';
+                    Editable = false;
+                }
+                field(Date; Rec.Date)
+                {
+                    ToolTip = 'Specifies the value of the Date field.';
                     Editable = false;
                 }
             }

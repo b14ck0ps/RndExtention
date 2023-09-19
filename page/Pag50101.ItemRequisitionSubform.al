@@ -48,6 +48,10 @@ page 50101 "Item Requisition Subform"
                     ToolTip = 'Specifies the value of the Date field.';
                     Editable = false;
                 }
+                field("Unit Of Measure"; Rec."Unit Of Measure")
+                {
+                    ToolTip = 'Specifies the value of the Unit Of Measure field.';
+                }
             }
         }
     }

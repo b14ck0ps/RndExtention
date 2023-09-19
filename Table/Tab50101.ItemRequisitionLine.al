@@ -36,7 +36,7 @@ table 50101 "Item Requisition Line"
                 else
                     Rec."Item Description" := '';
 
-
+                Rec."Unit Of Measure" := Item."Base Unit of Measure";
                 ItemRequtition.Get(Rec."Document No.");
                 Rec.Date := ItemRequtition.Date;
             end;
@@ -88,6 +88,10 @@ table 50101 "Item Requisition Line"
             OptionMembers = " ","Processing","Delivered";
         }
         field(14; Date; Date)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(15; "Unit Of Measure"; Code[10])
         {
             DataClassification = ToBeClassified;
         }

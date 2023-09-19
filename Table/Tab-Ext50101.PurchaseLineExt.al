@@ -15,6 +15,8 @@ tableextension 50101 "Purchase Line Ext" extends "Purchase Line"
                 ItemrequisitionLookUp: Page "Item Requisition Look Up";
             begin
                 ItemRequisitionLine.SetRange(Status, ItemRequisitionLine.Status::Released);
+                ItemRequisitionLine.SetRange("Delivery Status", ItemRequisitionLine."Delivery Status"::" ");
+                ItemrequisitionLookUp.SetTableView(ItemRequisitionLine);
                 ItemrequisitionLookUp.LookupMode := true;
 
                 if ItemrequisitionLookUp.RunModal() = Action::LookupOK then begin

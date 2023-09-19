@@ -58,8 +58,8 @@ table 50100 "Item Requisition"
                 ItemRequisitionLine: Record "Item Requisition Line";
             begin
                 ItemRequisitionLine.SetRange("Document No.", "No.");
+                ItemRequisitionLine.FindFirst();
                 repeat begin
-                    ItemRequisitionLine.FindFirst();
                     ItemRequisitionLine.Status := Status;
                     ItemRequisitionLine.Modify();
                 end until ItemRequisitionLine.Next() = 0;

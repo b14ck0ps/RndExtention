@@ -108,4 +108,12 @@ table 50100 "Item Requisition"
         end;
         Date := WORKDATE;
     end;
+
+    trigger OnDelete()
+    var
+        ItemRequisitionLine: Record "Item Requisition Line";
+    begin
+        ItemRequisitionLine.SetRange("Document No.", "No.");
+        ItemRequisitionLine.DeleteAll();
+    end;
 }

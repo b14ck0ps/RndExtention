@@ -16,7 +16,7 @@ page 50100 "Item Requisition Card"
                 field("No."; Rec."No.")
                 {
                     ToolTip = 'Specifies the value of the No. field.';
-                    Editable = IsSalesLinesEditable;
+                    Editable = false;
                 }
                 field(Description; Rec.Description)
                 {
